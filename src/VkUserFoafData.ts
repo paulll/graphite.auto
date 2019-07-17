@@ -34,8 +34,7 @@ export class VkUserFoafData extends ProcessorNode {
 				})
 			];
 		} catch (e) {
-			console.log(e);
-			return [];
+			return [new Token(['error'], e)];
 		}
 	}
 }

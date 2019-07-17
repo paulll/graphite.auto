@@ -33,7 +33,7 @@ export class StringAsVkUser extends ProcessorNode {
 					new Token(["vk.user", "vk.user.fields"], udata[0])
 				];
 			} catch (e) {
-				return;
+				return [new Token(['error'], e)];
 			}
 		}
 
