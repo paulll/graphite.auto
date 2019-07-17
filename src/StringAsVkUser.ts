@@ -22,7 +22,7 @@ export class StringAsVkUser extends ProcessorNode {
 						"online", "domain", "has_mobile", "contacts", "education", "universities",
 						"schools", "activity", "last_seen", "relation", "counters", "nickname", "relatives",
 						"interests", "movies", "tv", "books", "games", "about", "connections", "career",
-						"maiden_name", "military", "occupation", "personal", "quotes", "screen_name", "site"
+						"maiden_name", "military", "occupation", "personal", "quotes", "screen_name", "site", "home_town"
 					].join(',')
 				});
 
