@@ -21,8 +21,6 @@ export class VkUserFoafData extends ProcessorNode {
 			const body = await request.textConverted();
 			const data = (await parseXml(body))['rdf:RDF']['foaf:Person'][0];
 
-			console.dir(data, { depth: null });
-
 			return [
 				new Token([...tokens[0].impl, 'vk.user.foaf'], {
 					...usr,
