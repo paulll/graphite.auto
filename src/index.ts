@@ -1,13 +1,16 @@
 import {ProcessorNode, Token, Executor, Context} from "@paulll/siso";
+import {API} from "@paulll/vklib";
+
 import {StringAsVkUser} from "./StringAsVkUser";
 import {VkUserMainData} from "./VkUserMainData";
 import {VkUserFoafData} from "./VkUserFoafData";
-import {API} from "@paulll/vklib";
+import {ErrorReporter} from "./ErrorReporter";
 
 const executor = new Executor();
 executor.addNode(new StringAsVkUser());
 executor.addNode(new VkUserMainData());
 executor.addNode(new VkUserFoafData());
+executor.addNode(new ErrorReporter());
 
 const ctx = executor.createContext({vkApi: new API({
 		service_token: "c8dbb40ac8dbb40ac8dbb40a64c8ebf155cc8dbc8dbb40a92df9d61ae3e1068cf1fa8e9",
