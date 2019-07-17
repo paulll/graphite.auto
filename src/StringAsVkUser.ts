@@ -6,6 +6,9 @@ export class StringAsVkUser extends ProcessorNode {
 	public async process(ctx: Context, tokens: Token[]) {
 		let str = await tokens[0].data;
 
+		if (!str.includes('vk'))
+			return [];
+
 		if (str.includes('vk.com/'))
 			str = str.slice(str.indexOf('vk.com/') + 'vk.com/'.length);
 		if (str.startsWith('vk:'))
