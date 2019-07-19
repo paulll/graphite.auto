@@ -1,19 +1,22 @@
-import {ProcessorNode, Token, Executor, Context} from "@paulll/siso";
+import {Token, Executor} from "@paulll/siso";
 import {API} from "@paulll/vklib";
 
-import {StringAsVkUser} from "./StringAsVkUser";
-import {VkUserMainData} from "./VkUserMainData";
-import {VkUserFoafData} from "./VkUserFoafData";
+// core nodes
 import {ErrorReporter} from "./ErrorReporter";
-import {VkUserAvatars} from "./VkUserAvatars";
-import {VkUserWall} from "./VkUserWall";
+
+// vk.com related nodes
+import {VkStringAsUser} from "./vk/StringAsUser";
+import {VkUserMainData} from "./vk/UserMainData";
+import {VkUserFoafData} from "./vk/UserFoafData";
+import {VkUserAvatars} from "./vk/UserAvatars";
+import {VkUserWall} from "./vk/UserWall";
 
 const executor = new Executor();
 
-executor.addNode(new StringAsVkUser());
+executor.addNode(new ErrorReporter());
+executor.addNode(new VkStringAsUser());
 executor.addNode(new VkUserMainData());
 executor.addNode(new VkUserFoafData());
-executor.addNode(new ErrorReporter());
 executor.addNode(new VkUserAvatars());
 executor.addNode(new VkUserWall());
 
@@ -29,6 +32,5 @@ const ctx = executor.createContext({vkApi: new API({
 })();
 
 ctx.on("newToken", async (token: Token) => {
-	//console.log(token);
 	console.dir(token, { depth: null });
 });

@@ -1,6 +1,6 @@
 import {Context, ProcessorNode, Token} from "@paulll/siso";
 
-export class StringAsVkUser extends ProcessorNode {
+export class VkStringAsUser extends ProcessorNode {
 	public input = [['string']];
 
 	public async process(ctx: Context, tokens: Token[]) {
