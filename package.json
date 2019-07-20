@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/paulll/graphite.auto#readme",
   "dependencies": {
-    "@paulll/siso": "^1.6.0",
     "@paulll/vklib": "^2.0.2",
     "encoding": "^0.1.12",
     "node-fetch": "^2.6.0",
