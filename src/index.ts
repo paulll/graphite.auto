@@ -1,5 +1,6 @@
 import {Token, Executor} from "@paulll/siso";
 import {API} from "@paulll/vklib";
+import {OrientDBClient} from "orientjs";
 
 // core nodes
 import {ErrorReporter} from "./ErrorReporter";
@@ -20,17 +21,32 @@ executor.addNode(new VkUserFoafData());
 executor.addNode(new VkUserAvatars());
 executor.addNode(new VkUserWall());
 
-const ctx = executor.createContext({vkApi: new API({
-		service_token: "c8dbb40ac8dbb40ac8dbb40a64c8ebf155cc8dbc8dbb40a92df9d61ae3e1068cf1fa8e9",
-		access_token: false
-})});
-
 (async () => {
+	const odbclient = await OrientDBClient.connect({
+		host: "localhost",
+		port: 2424
+	});
+
+	const odbsession = await odbclient.session({
+		name: "graphite.auto",
+		username: "main",
+		password: "main",
+	});
+
+	const ctx = executor.createContext({
+		vkApi: new API({
+			service_token: "c8dbb40ac8dbb40ac8dbb40a64c8ebf155cc8dbc8dbb40a92df9d61ae3e1068cf1fa8e9",
+			access_token: false
+		}),
+		orient: odbsession
+	});
+
 	await ctx.run([
-		new Token(["string"], "vk: 281843929", 1),
+		new Token(["string"], "vk:281843929", 1),
 	]);
+
+	ctx.on("newToken", async (token: Token) => {
+		console.dir(token, { depth: null });
+	});
 })();
 
-ctx.on("newToken", async (token: Token) => {
-	console.dir(token, { depth: null });
-});

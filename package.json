@@ -28,7 +28,8 @@
     "@paulll/vklib": "^2.0.2",
     "encoding": "^0.1.12",
     "node-fetch": "^2.6.0",
-    "node-xml2js-promise": "^1.1.1"
+    "node-xml2js-promise": "^1.1.1",
+    "orientjs": "^3.0.5"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
